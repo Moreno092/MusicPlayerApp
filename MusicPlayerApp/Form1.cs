@@ -44,6 +44,23 @@ namespace MusicPlayerApp
             WindowsMediaPlayerMusic.URL = path[SongList.SelectedIndex];
         }
 
+        private void FullScreen_Click(object sender, EventArgs e)
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            WindowState = FormWindowState.Maximized;
+            TopMost = true;
+        }
+
+        private void MusicPlayerApp_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Escape)
+            {
+                FormBorderStyle = FormBorderStyle.Sizable;
+                WindowState = FormWindowState.Normal;
+                TopMost = false;
+            }
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);

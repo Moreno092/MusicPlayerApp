@@ -37,28 +37,32 @@ namespace MusicPlayerApp
             this.btbSelectSongs = new System.Windows.Forms.Button();
             this.WindowsMediaPlayerMusic = new AxWMPLib.AxWindowsMediaPlayer();
             this.Footer = new System.Windows.Forms.Label();
+            this.FullScreen = new System.Windows.Forms.PictureBox();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayerMusic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FullScreen)).BeginInit();
             this.SuspendLayout();
             // 
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.TopPanel.Controls.Add(this.FullScreen);
             this.TopPanel.Controls.Add(this.pictureBox1);
             this.TopPanel.Controls.Add(this.lblLogo);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TopPanel.Margin = new System.Windows.Forms.Padding(2);
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(595, 32);
             this.TopPanel.TabIndex = 0;
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(570, 8);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 20);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -83,8 +87,9 @@ namespace MusicPlayerApp
             this.SongList.FormattingEnabled = true;
             this.SongList.ItemHeight = 17;
             this.SongList.Location = new System.Drawing.Point(429, 36);
-            this.SongList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SongList.Margin = new System.Windows.Forms.Padding(2);
             this.SongList.Name = "SongList";
+            this.SongList.ScrollAlwaysVisible = true;
             this.SongList.Size = new System.Drawing.Size(173, 259);
             this.SongList.TabIndex = 1;
             this.SongList.SelectedIndexChanged += new System.EventHandler(this.SongList_SelectedIndexChanged);
@@ -95,7 +100,7 @@ namespace MusicPlayerApp
             this.btbSelectSongs.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btbSelectSongs.ForeColor = System.Drawing.Color.White;
             this.btbSelectSongs.Location = new System.Drawing.Point(429, 299);
-            this.btbSelectSongs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btbSelectSongs.Margin = new System.Windows.Forms.Padding(2);
             this.btbSelectSongs.Name = "btbSelectSongs";
             this.btbSelectSongs.Size = new System.Drawing.Size(173, 34);
             this.btbSelectSongs.TabIndex = 2;
@@ -105,10 +110,12 @@ namespace MusicPlayerApp
             // 
             // WindowsMediaPlayerMusic
             // 
-            this.WindowsMediaPlayerMusic.Dock = System.Windows.Forms.DockStyle.Left;
+            this.WindowsMediaPlayerMusic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.WindowsMediaPlayerMusic.Enabled = true;
             this.WindowsMediaPlayerMusic.Location = new System.Drawing.Point(0, 32);
-            this.WindowsMediaPlayerMusic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WindowsMediaPlayerMusic.Margin = new System.Windows.Forms.Padding(2);
             this.WindowsMediaPlayerMusic.Name = "WindowsMediaPlayerMusic";
             this.WindowsMediaPlayerMusic.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("WindowsMediaPlayerMusic.OcxState")));
             this.WindowsMediaPlayerMusic.Size = new System.Drawing.Size(425, 347);
@@ -125,6 +132,18 @@ namespace MusicPlayerApp
             this.Footer.TabIndex = 4;
             this.Footer.Text = "Developed by: Felipe Nyberg";
             // 
+            // FullScreen
+            // 
+            this.FullScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FullScreen.Image = ((System.Drawing.Image)(resources.GetObject("FullScreen.Image")));
+            this.FullScreen.Location = new System.Drawing.Point(538, 8);
+            this.FullScreen.Name = "FullScreen";
+            this.FullScreen.Size = new System.Drawing.Size(27, 20);
+            this.FullScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FullScreen.TabIndex = 2;
+            this.FullScreen.TabStop = false;
+            this.FullScreen.Click += new System.EventHandler(this.FullScreen_Click);
+            // 
             // MusicPlayerApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,14 +155,17 @@ namespace MusicPlayerApp
             this.Controls.Add(this.SongList);
             this.Controls.Add(this.TopPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MusicPlayerApp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Music Player App";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MusicPlayerApp_KeyDown);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WindowsMediaPlayerMusic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FullScreen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,6 +180,7 @@ namespace MusicPlayerApp
         private System.Windows.Forms.Button btbSelectSongs;
         private AxWMPLib.AxWindowsMediaPlayer WindowsMediaPlayerMusic;
         private System.Windows.Forms.Label Footer;
+        private System.Windows.Forms.PictureBox FullScreen;
     }
 }
 
