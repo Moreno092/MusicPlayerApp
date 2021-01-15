@@ -34,6 +34,7 @@ namespace MusicPlayerApp
                 {
                     SongList.Items.Add(files[i]);
                 }
+
             }
 
         }
@@ -59,11 +60,21 @@ namespace MusicPlayerApp
                 WindowState = FormWindowState.Normal;
                 TopMost = false;
             }
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void axWindowsMediaPlayer1_PlayStateChange(
+    object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (e.newState == 8)
+            {
+                axWindowsMediaPlayer1_PlayStateChange
+            }
         }
     }
 }
